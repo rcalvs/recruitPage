@@ -1,13 +1,15 @@
 import './App.css';
+import Header from './components/Header';
 
 function App() {
   return (
     <div className="App">
-      <header className="bg-blue-800">
+      <Header />
+      <main className="bg-blue-800">
         <p className="text-white">
-          Aqui começa.
+          Aqui é o Logo.
         </p>
-      </header>
+      </main>
     </div>
   );
 }
