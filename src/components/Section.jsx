@@ -1,27 +1,29 @@
-/* This example requires Tailwind CSS v2.0+ */
+/* This example requires Tailwind CSS v2.0+ 
+https://tailwindui.com/components/marketing/sections/feature-sections
+*/
 import { AnnotationIcon, GlobeAltIcon, LightningBoltIcon, ScaleIcon } from '@heroicons/react/outline'
 
 const features = [
   {
-    name: 'Competitive exchange rates',
+    name: 'Um mundo a sua disposição',
     description:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
     icon: GlobeAltIcon,
   },
   {
-    name: 'No hidden fees',
+    name: 'Sem taxas extras',
     description:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
     icon: ScaleIcon,
   },
   {
-    name: 'Transfers are instant',
+    name: 'Rapidez e transparência',
     description:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
     icon: LightningBoltIcon,
   },
   {
-    name: 'Mobile notifications',
+    name: 'Comunicação assertiva',
     description:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
     icon: AnnotationIcon,
@@ -33,9 +35,9 @@ export default function Section() {
     <div className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:text-center">
-          <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">Transactions</h2>
+          <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">Conheça-nos</h2>
           <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-            A better way to send money
+            Encontre o seu emprego dos sonhos
           </p>
           <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
             Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in

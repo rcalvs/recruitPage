@@ -1,5 +1,6 @@
 import './App.css';
 import Banner from './components/Banner';
+import Footer from './components/Footer';
 // import Form from './components/Form';
 import Header from './components/Header';
 import Section from './components/Section';
@@ -10,14 +11,12 @@ function App() {
     <div className="App">
       <Header />
       <div className="bg-blue-800">
-        <p className="text-white">
-          Aqui é o Logo.
-        </p>
-      <img src={HeaderImg} alt="Header Img"/>
+        <img src={HeaderImg} alt="Header Img"/>
       </div>
       <Banner />
       <Section />
       {/* <Form /> */}
+      <Footer />
     </div>
   );
 }
