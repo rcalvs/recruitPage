@@ -6,34 +6,14 @@ import React, { useState } from 'react';
 
 export default function Form() {
 
-  const [completeName, setCompleteName] = useState('');
-  const [email, setEmail] = useState('');
-  const [pretendJob, setPretendJob] = useState('');
-  const [sex, setSex] = useState('');
-  const [birthdate, setBirthdate] = useState('');
-
-  const [andress, setAndress] = useState('');
-  const [district, setDistrict] = useState('');
-  const [country, setCountry] = useState('');
-  const [cep, setCep] = useState('');
-
-  const [ phone, setPhone] = useState(0);
-  const [cellphone, setCellphone] = useState(0);
-  // const [contact, setContact] = useState('');
-
-  const [identity, setIdentity] = useState('');
-  const [cpf, setCpf] = useState(0);
-
-  // function completeAndress() {
-  //   set
-  // }
-  const [fullRegister, setFullRegister] = useState({
+    const [fullRegister, setFullRegister] = useState({
     NomeCompleto: '',
     Email: '',
     Sexo: '',
     Nascimento: '',
     CPF: '',
     Identidade: '',
+    EstadoCivil: '',
     CargoPretendido: '',
     EndereçoCompleto: {
       CEP: '',
@@ -48,11 +28,17 @@ export default function Form() {
   });
 
   function log() {
-    setFullRegister();
     console.log(fullRegister)
+
   }
 
-
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setFullRegister(prevState => ({
+        ...prevState,
+        [name]: value
+    }));
+  }
 
   return (
     <div className="flex h-screen bg-indigo-600 items-center justify-center mt-32 mb-32">
@@ -76,7 +62,9 @@ export default function Form() {
             type="text"
             placeholder="Nome Completo"
             required="true"
-            onChange={e => setCompleteName(e.target.value)}
+            value={fullRegister.NomeCompleto}
+            name="NomeCompleto"
+            onChange={handleChange}
             />
         </div>
     
@@ -88,7 +76,9 @@ export default function Form() {
               className="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
               type="text"
               placeholder="E-mail"
-              onChange={e => setEmail(e.target.value)}
+              value={fullRegister.Email}
+              name="Email"
+              onChange={handleChange}
             />
           </div>
 
@@ -98,7 +88,10 @@ export default function Form() {
               className="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
               type="text"
               placeholder="Cargo Pretendido"
-              onChange={e => setPretendJob(e.target.value)}  
+              value={fullRegister.CargoPretendido}
+              name="CargoPretendido"
+              onChange={handleChange}
+            
             />
           </div>
         </div>
@@ -110,7 +103,12 @@ export default function Form() {
             <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Sexo</label>
             <select
               className="py-2 px-3 text-gray-500 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-              onChange={e => setSex(e.target.value)}
+
+            
+              value={fullRegister.Sexo}
+              name="Sexo"
+              onChange={handleChange}
+            
             >
               <option>Masculino</option>
               <option>Feminino</option>
@@ -123,7 +121,10 @@ export default function Form() {
             <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Estado Civil</label>
             <select
               className="py-2 px-3 text-gray-500 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-              onChange={e => setBirthdate(e.target.value)}  
+
+              value={fullRegister.EstadoCivil}
+              name="EstadoCivil"
+              onChange={handleChange}
             >
               <option>Solteiro</option>
               <option>Casado</option>
@@ -139,8 +140,9 @@ export default function Form() {
               class="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
               type="text"
               placeholder="Data de Nascimento"
-              onChange={e => setBirthdate(e.target.value)}
-            />
+              value={fullRegister.Nascimento}
+              name="Nascimento"
+              onChange={handleChange}            />
           </div>
         </div>
 
@@ -157,8 +159,9 @@ export default function Form() {
             type="text"
             placeholder="Endereço"
             required="true"
-            onChange={e => setAndress(e.target.value)}
-          />
+            value={fullRegister.EndereçoCompleto.Logradouro}
+            name="Logradouro"
+            onChange={handleChange}          />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
@@ -168,8 +171,9 @@ export default function Form() {
               className="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
               type="text"
               placeholder="Bairro"
-              onChange={e => setDistrict(e.target.value)}
-            />
+              value={fullRegister.EndereçoCompleto.Bairro}
+              name="Bairro"
+              onChange={handleChange}            />
           </div>
 
           <div className="grid grid-cols-1">
@@ -178,8 +182,9 @@ export default function Form() {
               className="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
               type="text"
               placeholder="Cidade"
-              onChange={e => setCountry(e.target.value)}
-            />
+              value={fullRegister.EndereçoCompleto.Cidade}
+              name="Cidade"
+              onChange={handleChange}            />
           </div>
         </div>
 
@@ -192,8 +197,9 @@ export default function Form() {
               className="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
               type="text"
               placeholder="CEP"
-              onChange={e => setCep(e.target.value)}
-            />
+              value={fullRegister.EndereçoCompleto.CEP}
+              name="CEP"
+              onChange={handleChange}            />
           </div>
         </div>
 
@@ -205,8 +211,9 @@ export default function Form() {
               className="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
               type="text"
               placeholder="Telefone"
-              onChange={e => setPhone(e.target.value)}
-            />
+              value={fullRegister.Telefone}
+              name="Telefone"
+              onChange={handleChange}            />
           </div>
 
           <div className="grid grid-cols-1">
@@ -215,8 +222,9 @@ export default function Form() {
               className="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
               type="text"
               placeholder="Celular"
-              onChange={e => setCellphone(e.target.value)}
-            />
+              value={fullRegister.TelefoneCelular}
+              name="TelefoneCelular"
+              onChange={handleChange}            />
           </div>
         </div>
 
@@ -234,8 +242,9 @@ export default function Form() {
               className="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
               type="text"
               placeholder="CPF"
-              onChange={e => setCpf(e.target.value)}
-            />
+              value={fullRegister.CPF}
+              name="CPF"
+              onChange={handleChange}            />
           </div>
 
           <div className="grid grid-cols-1">
@@ -244,8 +253,9 @@ export default function Form() {
               className="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
               type="text"
               placeholder="Identidade"
-              onChange={e => setIdentity(e.target.value)}  
-            />
+              value={fullRegister.Identidade}
+              name="Identidade"
+              onChange={handleChange}            />
           </div>
         </div>
     
