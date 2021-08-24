@@ -6,6 +6,15 @@ import React, { useState } from 'react';
 
 export default function Form() {
 
+  const [endereçoCompleto, setEndereçoCompleto] = useState({
+    CEP: '',
+    Logradouro: '',
+    Numero: '',
+    Bairro: '',
+    Cidade: '',
+    Estado: '',
+  });
+
     const [fullRegister, setFullRegister] = useState({
     NomeCompleto: '',
     Email: '',
@@ -15,26 +24,33 @@ export default function Form() {
     Identidade: '',
     EstadoCivil: '',
     CargoPretendido: '',
-    EndereçoCompleto: {
-      CEP: '',
-      Logradouro: '',
-      Numero: '',
-      Bairro: '',
-      Cidade: '',
-      Estado: '',
-    },
+    EndereçoCompleto: "",
     Telefone: '',
     TelefoneCelular: '',
   });
 
+
+
   function log() {
+    setFullRegister(prevState => ({
+      ...prevState,
+      EndereçoCompleto:{ ...endereçoCompleto}
+    }));
     console.log(fullRegister)
+    console.log(endereçoCompleto)
 
   }
 
   const handleChange = e => {
     const { name, value } = e.target;
     setFullRegister(prevState => ({
+        ...prevState,
+        [name]: value
+    }));
+  }
+  const changeEndereço = e => {
+    const { name, value } = e.target;
+    setEndereçoCompleto(prevState => ({
         ...prevState,
         [name]: value
     }));
@@ -159,9 +175,10 @@ export default function Form() {
             type="text"
             placeholder="Endereço"
             required="true"
-            value={fullRegister.EndereçoCompleto.Logradouro}
+            value={endereçoCompleto.Logradouro}
             name="Logradouro"
-            onChange={handleChange}          />
+            onChange={changeEndereço}
+          />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
@@ -171,9 +188,10 @@ export default function Form() {
               className="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
               type="text"
               placeholder="Bairro"
-              value={fullRegister.EndereçoCompleto.Bairro}
+              value={endereçoCompleto.Bairro}
               name="Bairro"
-              onChange={handleChange}            />
+              onChange={changeEndereço}
+            />
           </div>
 
           <div className="grid grid-cols-1">
@@ -182,13 +200,12 @@ export default function Form() {
               className="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
               type="text"
               placeholder="Cidade"
-              value={fullRegister.EndereçoCompleto.Cidade}
+              value={endereçoCompleto.Cidade}
               name="Cidade"
-              onChange={handleChange}            />
+              onChange={changeEndereço}
+            />
           </div>
         </div>
-
-
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
           <div className="grid grid-cols-1">
@@ -197,9 +214,10 @@ export default function Form() {
               className="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
               type="text"
               placeholder="CEP"
-              value={fullRegister.EndereçoCompleto.CEP}
+              value={endereçoCompleto.CEP}
               name="CEP"
-              onChange={handleChange}            />
+              onChange={changeEndereço}
+            />
           </div>
         </div>
 
