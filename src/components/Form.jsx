@@ -7,16 +7,11 @@ import axios from 'axios';
 
 export default function Form() {
 
-
   useEffect(() => {
     axios.get('http://localhost:3030/estados').then(response => {
         console.log(response.data);
     })
   }, []);
-
-
-
-
 
   const [endereçoCompleto, setEndereçoCompleto] = useState({
     CEP: '',
@@ -87,6 +82,21 @@ export default function Form() {
         [name]: value
     }));
   }
+
+  function handleFormSubmit(event){
+    event.preventDefault();
+    setFullRegister(prevState => ({
+      ...prevState,
+      EndereçoCompleto:{ ...endereçoCompleto}
+    }));
+    console.log(fullRegister)
+    console.log(endereçoCompleto)
+
+    axios.post('http://localhost:3031/cadastro', fullRegister).then(response => {
+        alert(response.data.dados.length + ' cadastros!');
+        console.log(response.data.dados);
+    })
+}
 
   return (
     <div className="flex h-screen bg-indigo-600 items-center justify-center mt-32 mb-32">
@@ -323,7 +333,7 @@ export default function Form() {
         <div className='flex items-center justify-center  md:gap-8 gap-4 pt-5 pb-5'>
           <button
             className='w-auto bg-purple-500 hover:bg-purple-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'
-            onClick={ log }
+            onClick={ handleFormSubmit }
           >
             Continue
           </button>
