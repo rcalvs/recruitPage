@@ -2,9 +2,21 @@
   https://tailwindcomponents.com/component/form-with-file-input
   https://tailwindcomponents.com/component/steps-bar
 */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 export default function Form() {
+
+
+  useEffect(() => {
+    axios.get('http://localhost:3030/estados').then(response => {
+        console.log(response.data);
+    })
+  }, []);
+
+
+
+
 
   const [endereçoCompleto, setEndereçoCompleto] = useState({
     CEP: '',
@@ -29,6 +41,27 @@ export default function Form() {
     TelefoneCelular: '',
   });
 
+  async function buscaCep(e) {
+    let CEPValue = e.target.value;
+    CEPValue = CEPValue.replace(/\D+/, '');
+    setEndereçoCompleto(prevState => ({
+      ...prevState,
+      CEP: CEPValue
+    }));
+    try {
+      const resp = await axios.get(`https://viacep.com.br/ws/${endereçoCompleto.CEP}/json/`);
+      const dados = resp.data;
+      setEndereçoCompleto(prevState => ({
+        ...prevState,
+        Logradouro: dados.logradouro,
+        Bairro: dados.bairro,
+        Cidade: dados.localidade,
+        Estado: dados.uf,
+      }));
+    } catch (err) {
+      alert('Ocorreu um erro ao consultar o CEP. Por favor tente novamente.');
+    }
+  }
 
 
   function log() {
@@ -38,7 +71,6 @@ export default function Form() {
     }));
     console.log(fullRegister)
     console.log(endereçoCompleto)
-
   }
 
   const handleChange = e => {
@@ -77,7 +109,7 @@ export default function Form() {
             className="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
             type="text"
             placeholder="Nome Completo"
-            required="true"
+            required
             value={fullRegister.NomeCompleto}
             name="NomeCompleto"
             onChange={handleChange}
@@ -92,6 +124,7 @@ export default function Form() {
               className="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
               type="text"
               placeholder="E-mail"
+              required
               value={fullRegister.Email}
               name="Email"
               onChange={handleChange}
@@ -107,7 +140,6 @@ export default function Form() {
               value={fullRegister.CargoPretendido}
               name="CargoPretendido"
               onChange={handleChange}
-            
             />
           </div>
         </div>
@@ -119,12 +151,10 @@ export default function Form() {
             <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Sexo</label>
             <select
               className="py-2 px-3 text-gray-500 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-
-            
+              required
               value={fullRegister.Sexo}
               name="Sexo"
               onChange={handleChange}
-            
             >
               <option>Masculino</option>
               <option>Feminino</option>
@@ -137,7 +167,7 @@ export default function Form() {
             <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Estado Civil</label>
             <select
               className="py-2 px-3 text-gray-500 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-
+              required
               value={fullRegister.EstadoCivil}
               name="EstadoCivil"
               onChange={handleChange}
@@ -158,7 +188,8 @@ export default function Form() {
               placeholder="Data de Nascimento"
               value={fullRegister.Nascimento}
               name="Nascimento"
-              onChange={handleChange}            />
+              onChange={handleChange}
+            />
           </div>
         </div>
 
@@ -174,7 +205,7 @@ export default function Form() {
             className="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
             type="text"
             placeholder="Endereço"
-            required="true"
+            required
             value={endereçoCompleto.Logradouro}
             name="Logradouro"
             onChange={changeEndereço}
@@ -188,6 +219,7 @@ export default function Form() {
               className="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
               type="text"
               placeholder="Bairro"
+              required
               value={endereçoCompleto.Bairro}
               name="Bairro"
               onChange={changeEndereço}
@@ -200,6 +232,7 @@ export default function Form() {
               className="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
               type="text"
               placeholder="Cidade"
+              required
               value={endereçoCompleto.Cidade}
               name="Cidade"
               onChange={changeEndereço}
@@ -214,9 +247,12 @@ export default function Form() {
               className="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
               type="text"
               placeholder="CEP"
+              required
+              maxLength="8"
               value={endereçoCompleto.CEP}
               name="CEP"
               onChange={changeEndereço}
+              onBlur={(e) => buscaCep(e)} 
             />
           </div>
         </div>
@@ -229,9 +265,11 @@ export default function Form() {
               className="py-2 px-3 rounded-lg border-2 border-purple-300 mt-1 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
               type="text"
               placeholder="Telefone"
+              maxLength="11"
               value={fullRegister.Telefone}
               name="Telefone"
-              onChange={handleChange}            />
+              onChange={handleChange}
+            />
           </div>
 
           <div className="grid grid-cols-1">
@@ -242,7 +280,8 @@ export default function Form() {
               placeholder="Celular"
               value={fullRegister.TelefoneCelular}
               name="TelefoneCelular"
-              onChange={handleChange}            />
+              onChange={handleChange}
+            />
           </div>
         </div>
 
@@ -262,7 +301,10 @@ export default function Form() {
               placeholder="CPF"
               value={fullRegister.CPF}
               name="CPF"
-              onChange={handleChange}            />
+              required
+              maxLength="11"
+              onChange={handleChange}
+            />
           </div>
 
           <div className="grid grid-cols-1">
@@ -273,7 +315,8 @@ export default function Form() {
               placeholder="Identidade"
               value={fullRegister.Identidade}
               name="Identidade"
-              onChange={handleChange}            />
+              onChange={handleChange}
+            />
           </div>
         </div>
     
