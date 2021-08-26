@@ -1,0 +1,34 @@
+
+use('apiCadastro');
+
+db.apiCadastro.drop();
+
+use('apiCadastro');
+
+db.apiCadastro.insertOne([
+  {
+    "NomeCompleto": "NameTest",
+    "Email": "NameTest@email.com",
+    "Sexo": "Masculino",
+    "Nascimento": "13212100",
+    "CPF": "11111111111",
+    "Identidade": "11111111",
+    "EstadoCivil": "Solteiro",
+    "CargoPretendido": "aaaaaaaaaa",
+    "EndereçoCompleto": {
+    "CEP": "11111111",
+    "Logradouro": "Rua Teste",
+    "Numero": "111",
+    "Bairro": "Teste",
+    "Cidade": "Teste",
+    "Estado": "SP"
+    },
+    "Telefone": "11111111111",
+    "TelefoneCelular": "111111111"
+  },
+]);
+
+use('apiCadastro');
+db.apiCadastro.find();
+
+
