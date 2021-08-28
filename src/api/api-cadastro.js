@@ -52,8 +52,8 @@ app.post('/cadastro', (req, res) => {
 app.get('/api', function (_req, res) {
   var db = require('./db');
   var newPerson = db.Mongoose.model('apiCadastro', db.cadastroSchema, 'apiCadastro');
-  newPerson.find({}).lean().exec(function(_e, docs){
-     res.json(docs);
+  newPerson.find({}).lean().exec(function(_e, cadastros){
+     res.json(cadastros);
      res.end();
   });
 });
