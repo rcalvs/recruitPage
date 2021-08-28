@@ -1,27 +1,31 @@
-//api-cadastro.js
+//node src/api/api-cadastro.js
 var http = require('http'); 
 const express = require('express');
 const app = express();
 // const bodyParser = require('body-parser');
-var router = express.Router();
+
 
 app.use(require("cors")());
 app.use(express.urlencoded({ extended: true })); 
 app.use(express.json());
 
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/apiCadastro');
+var server = http.createServer(app); 
+server.listen(3031);
+console.log("Servidor escutando na porta 3031...")
 
+const uri = "mongodb+srv://rcalvs:123123123@cluster-neden.mouff.mongodb.net/apiCadastro?retryWrites=true&w=majority";
+var mongoose = require('mongoose');
+mongoose.connect(uri);
  
+const cadastros = [];
+
 app.get('/', (req, res, next) => {
     res.json({message: "Essa é sua base de dados atual", dados: cadastros});
 })
- 
-const cadastros = [];
-app.post('/cadastro', (req, res, next) => { 
-    console.log("Cadastro recebido!");
-    console.log(req.body.EndereçoCompleto);
 
+app.post('/cadastro', (req, res) => { 
+    console.log("Cadastro recebido!");
+    // console.log(req.body.EndereçoCompleto);
     cadastros.push({
       NomeCompleto: req.body.NomeCompleto, 
       Email: req.body.Email,
@@ -45,23 +49,19 @@ app.post('/cadastro', (req, res, next) => {
     res.json({message: "Cadastro salvo com sucesso!", dados: cadastros});
 }) 
  
-var server = http.createServer(app); 
-server.listen(3031);
-console.log("Servidor escutando na porta 3031...")
-
-app.get('/api', function (req, res, next) {
-  var db = require('../db');
-  var Cadastros = db.Mongoose.model('apiCadastro', db.cadastroSchema, 'apiCadastro');
-  Cadastros.find({}).lean().exec(function(e,docs){
+app.get('/api', function (_req, res) {
+  var db = require('./db');
+  var newPerson = db.Mongoose.model('apiCadastro', db.cadastroSchema, 'apiCadastro');
+  newPerson.find({}).lean().exec(function(_e, docs){
      res.json(docs);
      res.end();
   });
 });
 
-router.post('/data/', function (req, res, next) {
-    var db = require('../db');
-    var Cadastro = db.Mongoose.model('apiCadastro', db.cadastroSchema, 'apiCadastro');
-    var newCadastro = new Cadastro(
+app.post('/data/', function (req, res) {
+    var db = require('./db');
+    var newPerson = db.Mongoose.model('apiCadastro', db.cadastroSchema, 'apiCadastro');
+    var newCadastro = new newPerson(
       {
         NomeCompleto: req.body.NomeCompleto, 
         Email: req.body.Email,
@@ -93,5 +93,3 @@ router.post('/data/', function (req, res, next) {
         res.end();
     });
 });
-
-module.exports = router;

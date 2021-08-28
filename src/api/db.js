@@ -1,5 +1,6 @@
+const uri = "mongodb+srv://rcalvs:123123123@cluster-neden.mouff.mongodb.net/apiCadastro?retryWrites=true&w=majority";
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/apiCadastro');
+mongoose.connect(uri);
 
 var cadastroSchema = new mongoose.Schema({
     NomeCompleto: String,
