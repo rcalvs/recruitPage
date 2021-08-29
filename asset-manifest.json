@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/recruitPage/static/css/main.5a712480.chunk.css",
-    "main.js": "/recruitPage/static/js/main.3560943f.chunk.js",
-    "main.js.map": "/recruitPage/static/js/main.3560943f.chunk.js.map",
+    "main.js": "/recruitPage/static/js/main.157a96f5.chunk.js",
+    "main.js.map": "/recruitPage/static/js/main.157a96f5.chunk.js.map",
     "runtime-main.js": "/recruitPage/static/js/runtime-main.f840d156.js",
     "runtime-main.js.map": "/recruitPage/static/js/runtime-main.f840d156.js.map",
     "static/js/2.b2de6efa.chunk.js": "/recruitPage/static/js/2.b2de6efa.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.f840d156.js",
     "static/js/2.b2de6efa.chunk.js",
     "static/css/main.5a712480.chunk.css",
-    "static/js/main.3560943f.chunk.js"
+    "static/js/main.157a96f5.chunk.js"
   ]
 }
