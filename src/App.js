@@ -7,11 +7,10 @@ import Header from './components/Header';
 import Section from './components/Section';
 import HeaderImg from './imgs/investors_xl_lg.jpg';
 
-
 function App() {
   return (
     <Switch>
-      <Route exact path="/recruitPage">
+      <Route path="/recruitPage">
         <div className="App">
           <Header />
           <div className="bg-blue-800">
@@ -29,8 +28,14 @@ function App() {
           <Footer />
          </div>
       </Route>
+      <Route path="/cadastro">
+        <div className="App">
+          <Header />
+          <Form />
+          <Footer />
+         </div>
+      </Route>
     </Switch>
-    
   );
 }
 
