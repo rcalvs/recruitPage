@@ -11,7 +11,7 @@ import HeaderImg from './imgs/investors_xl_lg.jpg';
 function App() {
   return (
     <Switch>
-      <Route exact path="/">
+      <Route exact path="/recruitPage">
         <div className="App">
           <Header />
           <div className="bg-blue-800">
@@ -22,7 +22,7 @@ function App() {
           <Footer />
          </div>
       </Route>
-      <Route path="/cadastro">
+      <Route path="/recruitPage/cadastro">
         <div className="App">
           <Header />
           <Form />
