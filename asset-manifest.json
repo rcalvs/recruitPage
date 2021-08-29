@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/recruitPage/static/css/main.5a712480.chunk.css",
+    "main.js": "/recruitPage/static/js/main.41c7646d.chunk.js",
+    "main.js.map": "/recruitPage/static/js/main.41c7646d.chunk.js.map",
+    "runtime-main.js": "/recruitPage/static/js/runtime-main.f840d156.js",
+    "runtime-main.js.map": "/recruitPage/static/js/runtime-main.f840d156.js.map",
+    "static/js/2.b73b5b8c.chunk.js": "/recruitPage/static/js/2.b73b5b8c.chunk.js",
+    "static/js/2.b73b5b8c.chunk.js.map": "/recruitPage/static/js/2.b73b5b8c.chunk.js.map",
+    "static/js/3.b25500a4.chunk.js": "/recruitPage/static/js/3.b25500a4.chunk.js",
+    "static/js/3.b25500a4.chunk.js.map": "/recruitPage/static/js/3.b25500a4.chunk.js.map",
+    "index.html": "/recruitPage/index.html",
+    "static/css/main.5a712480.chunk.css.map": "/recruitPage/static/css/main.5a712480.chunk.css.map",
+    "static/js/2.b73b5b8c.chunk.js.LICENSE.txt": "/recruitPage/static/js/2.b73b5b8c.chunk.js.LICENSE.txt",
+    "static/media/investors_xl_lg.f1e2f0b4.jpg": "/recruitPage/static/media/investors_xl_lg.f1e2f0b4.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f840d156.js",
+    "static/js/2.b73b5b8c.chunk.js",
+    "static/css/main.5a712480.chunk.css",
+    "static/js/main.41c7646d.chunk.js"
+  ]
+}
